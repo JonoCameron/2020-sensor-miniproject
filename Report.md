@@ -11,11 +11,11 @@ I added code to client.py so that the data the client receives is placed in a fi
 Using statistics and scipy.stats I calculated the median and variance of the temperature and occupancy data for class1 and plotted the Probability Density Function (PDF) of the temperature, occupancy and co2 levels of the same room. 
 
 # Occupancy PDF
-![image info](./media/occuPDF.png)
+![image info](./media/occuPDF.PNG)
 
 # Temperature PDF
-![image info](./media/tempPDF.png)
+![image info](./media/tempPDF.PNG)
 
 # CO2 PDF
-![image info](./media/co2PDF.png)
+![image info](./media/co2PDF.PNG)
 
