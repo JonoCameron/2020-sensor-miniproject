@@ -1,6 +1,6 @@
 # Task 0
 
-The welcome message sent to the client upon initial conncetion with the server is "ECE Senior Capstone IoT simulator". Disappointingly dull.
+The welcome message sent to the client upon initial conncetion with the server is "ECE Senior Capstone IoT simulator".
 
 # Task 1
 
@@ -27,6 +27,12 @@ The bounds on each rooms temperature would be expected to be different, given th
 
 # Task 4
 
-4) It is better to send data from the sensors to the server when they have data because having the server routinely poll the sensor for data is a waste of resources
+1) The simulation is reflective of the real world that the data only varies by a small amount each time a packet is sent, in the sense of the temperature. 
+
+2) Since I didn't run the simulation through the night, I cannot talk about how good it is at simulating co2 and occupancy levels out of work hours. You would expect both to be very low level in reality but I am sure that if I ran the simulation at night I would get data values that would be more fitting of day-time activity.
+
+3) I can't talk about using the python websockets library because I literally used what they gave us.
+
+4) It is better to send data from the sensors to the server when they have data because having the server routinely poll the sensor for data is a waste of resources.
 
 
