@@ -72,23 +72,36 @@ if __name__ == "__main__":
     varianceTempData = statistics.variance(tempData)
     varianceOccuData = statistics.variance(occuData)
 
+    time = data['temperature'].index
+    time_change = time[1:] - time[:-1]
+    for i in time_change:
+        time_intervals=i.total_seconds()
+    time_data = pandas.Series(time_intervals)
+    time_data = time_data.sort_values(axis='index', ascending=False)
+    
+    meanTimeData = statistics.mean(time_data)
+    varianceTimeData = time_data.var()
     
     print('The median temperature of class1 is: ', medianTempData)
-
     print('The variance of the temperature data of class1 is: ', varianceTempData)
-
+    
     print('The median occupancy of class1 is: ', medianOccuData)
-
     print('The variance of the occupancy data of class1 is: ', varianceOccuData)
+    
+    print('The mean time interval is: ', meanTimeData)
+    print('THe variance of time intervals is: ', varianceTimeData)
 
-    fig1 = plt.subplot(1, 1, 1) 
+    fig1 = plt.subplot(2, 2, 1) 
     fig1.plot(occuData, norm.pdf(occuData), label='Occupancy PDF')
     plt.show()
 
-    fig2 = plt.subplot(1, 1, 1)
+    fig2 = plt.subplot(2, 2, 2)
     fig2.plot(tempData, norm.pdf(tempData), label='Temperature PDF')
     plt.show()
 
-    fig3 = plt.subplot(1, 1, 1)
+    fig3 = plt.subplot(2, 2, 3)
     fig3.plot(co2Data, norm.pdf(co2Data), label='CO2 PDF')
     plt.show()
+    
+    fig4 = plt.subplot(2, 2, 4)
+    fig4.plot(time_data, norm.pdf(time_data), label = 'Time-interval PDF')
