@@ -65,29 +65,24 @@ if __name__ == "__main__":
     uppQuart = round(dataLen*3/4)
     IQR = tempData[uppQuart] - tempData[lowQuart]
 
-    print(IQR)
     lowOutlier = round(tempData[lowQuart] - (4 * IQR))
     uppOutlier = round(tempData[uppQuart] + (4 * IQR))
 
-    print(lowOutlier)
-    print(uppOutlier)
+    bad = 0
 
     for i in range(dataLen):
         if (tempData[i] < uppOutlier) or (tempData[i] > lowOutlier):
-            print(tempData[i])
             tempData[i] = np.NaN
+            bad = bad + 1
 
     tempData = tempData.dropna()
 
     medianTempData = statistics.median(tempData)
     varianceTempData = statistics.median(tempData)
 
-    print("The doctored median after filtering the data is: ")
-    print(medianTempData)
-    print("The doctored variance after filtering the data is: ")
-    print(varianceTempData)
+    badRatio = bad / dataLen
+
+    print("The doctored median after filtering the data is: ", medianTempData)
+    print("The doctored variance after filtering the data is: ", varianceTempData)
+    print("The ratio of bad data points in the temperature data was: ", badRatio)
     
-
-#   if tempData[i] in range(lowOutlier, uppOutlier)
-
-#if (tempData[i] < (tempData[lowQuart] - (1.5 * IQR))) or (tempData[i] > (tempData[uppQuart] - (1.5 * IQR))):

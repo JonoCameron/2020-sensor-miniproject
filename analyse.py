@@ -73,17 +73,13 @@ if __name__ == "__main__":
     varianceOccuData = statistics.variance(occuData)
 
     
-    print('The median temperature of class1 is: ')
-    print(medianTempData)
+    print('The median temperature of class1 is: ', medianTempData)
 
-    print('The variance of the temperature data of class1 is: ')
-    print(varianceTempData)
+    print('The variance of the temperature data of class1 is: ', varianceTempData)
 
-    print('The median occupancy of class1 is: ')
-    print(medianOccuData)
+    print('The median occupancy of class1 is: ', medianOccuData)
 
-    print('The variance of the occupancy data of class1 is: ')
-    print(varianceOccuData)
+    print('The variance of the occupancy data of class1 is: ', varianceOccuData)
 
     fig1 = plt.subplot(1, 1, 1) 
     fig1.plot(occuData, norm.pdf(occuData), label='Occupancy PDF')
