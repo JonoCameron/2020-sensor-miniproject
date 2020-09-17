@@ -55,44 +55,27 @@ if __name__ == "__main__":
     data = load_data(file)
 
     tempData = data['temperature']['class1']
-    occuData = data['occupancy']['class1']
-    co2Data = data['co2']['class1']
 
     tempData = tempData.dropna()
-    occuData = occuData.dropna()
-    co2Data = co2Data.dropna()
-
     tempData = tempData.sort_values(axis='index', ascending=False)
-    occuData = occuData.sort_values(axis='index', ascending=False)
-    co2Data = co2Data.sort_values(axis='index', ascending=False)
 
-    medianTempData = statistics.median(tempData)
-    medianOccuData = statistics.median(occuData)
+    dataLen = (len(tempData))
 
-    varianceTempData = statistics.variance(tempData)
-    varianceOccuData = statistics.variance(occuData)
+    lowQuart = round(dataLen/4)
+    uppQuart = round(dataLen*3/4)
+    IQR = tempData[uppQuart] - tempData[lowQuart]
 
-    
-    print('The median temperature of class1 is: ')
-    print(medianTempData)
+    print(IQR)
+    lowOutlier = round(tempData[lowQuart] - (4 * IQR))
+    uppOutlier = round(tempData[uppQuart] + (4 * IQR))
 
-    print('The variance of the temperature data of class1 is: ')
-    print(varianceTempData)
+    print(lowOutlier)
+    print(uppOutlier)
 
-    print('The median occupancy of class1 is: ')
-    print(medianOccuData)
+    for i in range(dataLen):
+        if (tempData[i] < uppOutlier) or (tempData[i] > lowOutlier):
+            print(tempData[i])
 
-    print('The variance of the occupancy data of class1 is: ')
-    print(varianceOccuData)
+#   if tempData[i] in range(lowOutlier, uppOutlier)
 
-    fig1 = plt.subplot(1, 1, 1) 
-    fig1.plot(occuData, norm.pdf(occuData), label='Occupancy PDF')
-    plt.show()
-
-    fig2 = plt.subplot(1, 1, 1)
-    fig2.plot(tempData, norm.pdf(tempData), label='Temperature PDF')
-    plt.show()
-
-    fig3 = plt.subplot(1, 1, 1)
-    fig3.plot(co2Data, norm.pdf(co2Data), label='CO2 PDF')
-    plt.show()
+#if (tempData[i] < (tempData[lowQuart] - (1.5 * IQR))) or (tempData[i] > (tempData[uppQuart] - (1.5 * IQR))):
