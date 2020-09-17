@@ -1,5 +1,7 @@
 *.json
 
+algo.PNG
+
 pip-wheel-metadata/
 
 # Byte-compiled / optimized / DLL files

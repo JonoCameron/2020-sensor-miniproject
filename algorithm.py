@@ -75,6 +75,18 @@ if __name__ == "__main__":
     for i in range(dataLen):
         if (tempData[i] < uppOutlier) or (tempData[i] > lowOutlier):
             print(tempData[i])
+            tempData[i] = np.NaN
+
+    tempData = tempData.dropna()
+
+    medianTempData = statistics.median(tempData)
+    varianceTempData = statistics.median(tempData)
+
+    print("The doctored median after filtering the data is: ")
+    print(medianTempData)
+    print("The doctored variance after filtering the data is: ")
+    print(varianceTempData)
+    
 
 #   if tempData[i] in range(lowOutlier, uppOutlier)
 
