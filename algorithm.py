@@ -78,10 +78,11 @@ if __name__ == "__main__":
     tempData = tempData.dropna()
 
     medianTempData = statistics.median(tempData)
-    varianceTempData = statistics.median(tempData)
+    varianceTempData = statistics.variance(tempData)
 
     badRatio = bad / dataLen
-
+    print("Lower bound is: ", lowOutlier)
+    print("Upper bound is: ", uppOutlier)
     print("The doctored median after filtering the data is: ", medianTempData)
     print("The doctored variance after filtering the data is: ", varianceTempData)
     print("The ratio of bad data points in the temperature data was: ", badRatio)
