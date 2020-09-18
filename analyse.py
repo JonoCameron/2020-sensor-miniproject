@@ -75,12 +75,12 @@ if __name__ == "__main__":
     time_intervals = [i.total_seconds() for i in time_change]
     time_data = pandas.Series(time_intervals)
     plt.figure()
-    time_data.plot.density()
-    plt.title('Time Interval PDF')
+    time_data.plot.hist()
+    plt.title('Time Interval Histogram')
     plt.xlabel('Time (seconds)')
 
-    meanTimeData = str(time_data.mean())
-    varianceTimeData = str(time_data.var())
+    meanTimeData = time_data.mean()
+    varianceTimeData = time_data.var()
     
     print('The median temperature of class1 is: ', medianTempData)
     print('The variance of the temperature data of class1 is: ', varianceTempData)
@@ -88,13 +88,13 @@ if __name__ == "__main__":
     print('The median occupancy of class1 is: ', medianOccuData)
     print('The variance of the occupancy data of class1 is: ', varianceOccuData)
 
-    print('The median time interval of class1 is: ', meanTimeData)
+    print('The mean time interval is: ', meanTimeData)
     print('The variance of the occupancy data of class1 is: ', varianceTimeData)
     
     for i in data:
         plt.figure()
-        data[i]['class1'].plot.density()
-        plt.title('PDF for '+i+' (class1)')
+        data[i]['class1'].plot.hist()
+        plt.title('Histogram for '+i+' (class1)')
         
         if i=='temperature':
             plt.xlabel('Temperature')
