@@ -79,19 +79,22 @@ if __name__ == "__main__":
     plt.title('Time Interval PDF')
     plt.xlabel('Time (seconds)')
 
+    meanTimeData = str(time_data.mean())
+    varianceTimeData = str(time_data.var())
+    
     print('The median temperature of class1 is: ', medianTempData)
     print('The variance of the temperature data of class1 is: ', varianceTempData)
 
     print('The median occupancy of class1 is: ', medianOccuData)
     print('The variance of the occupancy data of class1 is: ', varianceOccuData)
 
-    print('The median time interval of class1 is: ', str(time_data.mean()))
-    print('The variance of the occupancy data of class1 is: ', str(time_data.var()))
+    print('The median time interval of class1 is: ', meanTimeData)
+    print('The variance of the occupancy data of class1 is: ', varianceTimeData)
     
     for i in data:
         plt.figure()
         data[i]['class1'].plot.density()
-        plt.title('PDF for '+i+'(class1)')
+        plt.title('PDF for '+i+' (class1)')
         
         if i=='temperature':
             plt.xlabel('Temperature')
