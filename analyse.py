@@ -19,7 +19,6 @@ import numpy as np
 import statistics as statistics
 from scipy.stats import norm
 
-
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
     temperature = {}
@@ -44,7 +43,6 @@ def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
     return data
 
-
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="load and analyse IoT JSON data")
     p.add_argument("file", help="path to JSON data file")
@@ -53,7 +51,7 @@ if __name__ == "__main__":
     file = Path(P.file).expanduser()
 
     data = load_data(file)
-
+    
     tempData = data['temperature']['class1']
     occuData = data['occupancy']['class1']
     co2Data = data['co2']['class1']
@@ -71,37 +69,35 @@ if __name__ == "__main__":
 
     varianceTempData = statistics.variance(tempData)
     varianceOccuData = statistics.variance(occuData)
-
+    
     time = data['temperature'].index
     time_change = time[1:] - time[:-1]
-    for i in time_change:
-        time_intervals=i.total_seconds()
+    time_intervals = [i.total_seconds() for i in time_change]
     time_data = pandas.Series(time_intervals)
-    time_data = time_data.sort_values(axis='index', ascending=False)
-    
-    meanTimeData = statistics.mean(time_data)
-    varianceTimeData = time_data.var()
-    
+    plt.figure()
+    time_data.plot.density()
+    plt.title('Time Interval PDF')
+    plt.xlabel('Time (seconds)')
+
     print('The median temperature of class1 is: ', medianTempData)
     print('The variance of the temperature data of class1 is: ', varianceTempData)
-    
+
     print('The median occupancy of class1 is: ', medianOccuData)
     print('The variance of the occupancy data of class1 is: ', varianceOccuData)
+
+    print('The median time interval of class1 is: ', str(time_data.mean()))
+    print('The variance of the occupancy data of class1 is: ', str(time_data.var()))
     
-    print('The mean time interval is: ', meanTimeData)
-    print('THe variance of time intervals is: ', varianceTimeData)
-
-    fig1 = plt.subplot(2, 2, 1) 
-    fig1.plot(occuData, norm.pdf(occuData), label='Occupancy PDF')
+    for i in data:
+        plt.figure()
+        data[i]['class1'].plot.density()
+        plt.title('PDF for '+i+'(class1)')
+        
+        if i=='temperature':
+            plt.xlabel('Temperature')
+        elif i == 'occupancy':
+            plt.xlabel('Number of People')
+        else: 
+            plt.xlabel('CO2 Amount')
     plt.show()
 
-    fig2 = plt.subplot(2, 2, 2)
-    fig2.plot(tempData, norm.pdf(tempData), label='Temperature PDF')
-    plt.show()
-
-    fig3 = plt.subplot(2, 2, 3)
-    fig3.plot(co2Data, norm.pdf(co2Data), label='CO2 PDF')
-    plt.show()
-    
-    fig4 = plt.subplot(2, 2, 4)
-    fig4.plot(time_data, norm.pdf(time_data), label = 'Time-interval PDF')
