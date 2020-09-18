@@ -11,22 +11,26 @@ I added code to client.py so that the data the client receives is placed in a fi
 Using statistics and scipy.stats I calculated the median and variance of the temperature and occupancy data for class1 and plotted the Probability Density Function (PDF) of the temperature, occupancy and co2 levels of the same room. 
 
 **1) Median for class1 Temperature:** 27.005. **Variance for class1 Temperature:** 182.312.
+
 **2) Median for class1 Occupancy:** 19.0. **Variance for class1 Occupancy:** 16.84.
 
+**3)**
 
-# Occupancy PDF
+# Occupancy Histogram
 ![image info](./media/occuHist.PNG)
 
-# Temperature PDF
+# Temperature Histogram
 ![image info](./media/tempHist.PNG)
 
-# CO2 PDF
+# CO2 Histogram
 ![image info](./media/co2Hist.PNG)
 
-# Time PDf
+# Time Histogram
 ![image info](./media/TimeHist.PNG)
 
-The mean and variance of the time interval are -0.964 and 0.903 respectively.
+
+**4**
+The mean and variance of the time interval are -0.964 and 0.903 respectively. It mimics the Erlang distribution for time intervals in large systems.
 
 **Histograms**
 
@@ -45,7 +49,7 @@ A persistent change in temperature doesn't necessarily mean that the sensor is b
 
 **3. What are possible bounds on temperature for each room type?**
 
-The bounds on each rooms temperature would be expected to be different, given the different numbers of warm bodies in each, between the office, class and lab. Certain experiments could also produce more heat in the lab which would raise the ambient temperature of that room. 
+The bounds on each rooms temperature would be expected to be different, given the different numbers of warm bodies in each, between the office, class and lab. Certain experiments could also produce more heat in the lab which would raise the ambient temperature of that room. We can estimate the temperature sensor bounds to be around 10-20 degrees above/below the average temperature for each room. In our scenario, the bounds were 25 for the lower bound and 29 for the upper bound.
 
 # Task 4: Conclusions
 
